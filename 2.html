@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Scene 2: Number of Adults per Occupation per Income</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script type="text/javascript" src="./lib/d3.js"></script>
+</head>
+
+<body>
+
+<div class="control-group">
+    <button onclick="window.location.href='1.html'">
+        Scene 1
+    </button> >
+    <button onclick="window.location.href='2.html'">
+        Scene 2 (Current)
+    </button> >
+    <button onclick="window.location.href='3.html'">
+        Scene 3
+    </button> >
+    <button onclick="window.location.href='4.html'">
+        Scene 4
+    </button>
+</div>
+
+<script type="text/javascript">
+
+	d3.csv("2ndchartdata.csv", function(error, csv){ // <-D
+            render(csv);;
+        }); 
+		
+	function render(data) {
+		
+		var height = 1000, 
+			width = 1500, 
+			_margins = {top: 60, left: 170, right: 60, bottom: 60}
+			XaxisWidth = width - 2 * _margins.left;
+			YaxisWidth = height - 2 * _margins.top;
+			
+		var _data= data;
+		
+		
+			
+		
+		
+			
+		var svg = d3.select("body").append("svg")
+				.attr("class", "axis")
+				.attr("width", width)
+				.attr("height", height);
+				
+				
+			
+		//X axis		
+		var scaleX = d3.scaleLinear()
+				.domain([0, 4000]).range([0, XaxisWidth]);
+				
+		var axisX = d3.axisBottom()
+				.scale(scaleX)
+				.ticks(10)
+				.tickSize(12) // <-A
+				.tickPadding(10); // <-C
+
+		svg.append("g")        
+			.attr("transform", function(){
+				return "translate(" + _margins.left +
+						"," +  (height -_margins.bottom ) + ")";
+			})
+			.call(axisX);
+			
+		
+		 // text label for the x axis
+	  svg.append("text")             
+		  .attr("x", width/2 )
+		  .attr("y",  height )
+		  .style("text-anchor", "middle")
+		  .text("Number of Adults");
+		  
+		//Y axis
+		var scaleY = d3.scaleBand()
+				.domain( _data.map(function(d) { return d.category; })).range([0, YaxisWidth]).padding(0.3);;
+		
+		var axisY = d3.axisLeft()
+				.scale(scaleY); // <-C
+
+		svg.append("g")        
+			.attr("transform", function(){
+				return "translate(" + _margins.left +
+						"," + _margins.top + ")";
+			})
+			.call(axisY);
+			
+		//text lable for Y axis
+
+			
+			svg.append("text")      
+		  .style("text-anchor", "middle")
+		  .attr("transform", "translate("+ 20 +","+(height/2)+")rotate(-90)")
+		  .text("Occupation per Income");
+			
+		//body and bars
+		
+		 _bodyG = svg.append("g")
+						.attr("class", "body")
+						.attr("transform", "translate(" 
+								+ _margins.left
+								+ "," 
+								+ _margins.top + ")")
+								
+		// append the rectangles for the bar chart
+		var bars = _bodyG.selectAll("rect")
+					.data(_data);
+					
+			bars.enter()
+					.append("rect") // <-B
+				.merge(bars)
+					.attr("class", 
+					function(d) {
+					var	barclass="bar0"			
+					if(d.income == ">50K")
+					barclass="bar1";
+					return barclass
+					
+					; })	
+			.attr("y", function(d) { return scaleY(d.category); })
+			.attr("height", scaleY.bandwidth())
+			.attr("x", 1)
+			.attr("width", function(d) { return scaleX(d.count); });
+			
+			
+		//legend
+		 svg.append("circle") // <-B         
+		 .attr("cx", width - 3 * _margins.right)         
+		 .attr("cy",2*_margins.top)         
+		 .attr("r", 10)
+		.attr("class", "col1");	 
+		
+		svg.append("text")             
+		  .attr("x", width - 3 * _margins.right + 35 )
+		  .attr("y",  2*_margins.top +5)
+		  .style("text-anchor", "middle")
+		  .text(">50K");
+		 
+		
+		svg.append("circle") // <-B         
+		 .attr("cx",  width - 3 * _margins.right)         
+		 .attr("cy",2* _margins.top+ 22)         
+		 .attr("r", 10)
+		.attr("class", "col0");	
+		
+		svg.append("text")             
+		  .attr("x", width - 3 * _margins.right + 35 )
+		  .attr("y",  2*_margins.top +28)
+		  .style("text-anchor", "middle")
+		  .text("<=50K");
+	 
+	 }
+</script>
+
+</body>
+
+</html>
