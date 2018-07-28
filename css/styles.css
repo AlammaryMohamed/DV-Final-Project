@@ -17,6 +17,35 @@ button {
     cursor: pointer;
 }
 
+.toolTip {
+	position: absolute;
+  text-align: center;
+
+  padding: 4px;
+  font: 12px sans-serif;
+
+  border-radius: 8px;
+  pointer-events: none;
+  
+
+  background: none repeat scroll 0 0 #ffffff;
+  border: 2px solid #dedede;
+ 
+}
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 60px;
+  height: 28px;
+  padding: 2px;
+  font: 12px sans-serif;
+  background: lightsteelblue;
+  border: 0px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
 .bar1{
     fill: #0B9F00;
 }
@@ -32,6 +61,52 @@ button {
 .col0{
     fill:#D54737;
 }
+
+div.blueTable {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  border: 1px solid #1C6EA4;
+  background-color: #EEEEEE;
+  width: 1100px;
+  height: 30px;
+  text-align: left;
+  border-collapse: collapse;
+}
+.divTable.blueTable .divTableCell, .divTable.blueTable .divTableHead {
+  border: 1px solid #AAAAAA;
+  padding: 3px 2px;
+}
+.divTable.blueTable .divTableBody .divTableCell {
+  font-size: 13px;
+  padding: 10px;
+}
+.blueTable .tableFootStyle {
+  font-size: 14px;
+}
+.blueTable .tableFootStyle .links {
+	 text-align: right;
+}
+.blueTable .tableFootStyle .links a{
+  display: inline-block;
+  background: #1C6EA4;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.blueTable.outerTableFooter {
+  border-top: none;
+}
+.blueTable.outerTableFooter .tableFootStyle {
+  padding: 3px 5px; 
+}
+/* DivTable.com */
+.divTable{ display: table; }
+.divTableRow { display: table-row; }
+.divTableHeading { display: table-header-group;}
+.divTableCell, .divTableHead { display: table-cell;}
+.divTableHeading { display: table-header-group;}
+.divTableFoot { display: table-footer-group;}
+.divTableBody { display: table-row-group;}
+
 
 
 .box {
