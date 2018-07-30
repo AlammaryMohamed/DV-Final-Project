@@ -9,25 +9,50 @@
 
 <body>
 
-<div class="control-group">
-    <button onclick="window.location.href='1.html'">
-        Scene 1
-    </button> >
-    <button onclick="window.location.href='2.html'">
-        Scene 2 
-    </button> >
-    <button onclick="window.location.href='3.html'">
-        Scene 3 (Current)
-    </button> >
-    <button onclick="window.location.href='4.html'">
-        Scene 4
-    </button>
-</div>
 
 <div class="divTable blueTable">
 <div class="divTableBody">
+
 <div class="divTableRow">
-<div class="divTableCell">Let us look at the Marital Status. We can see that even though the Married people, in general, have a higher percentage of the >50K than any other Marital Status, but still the majority of married people has income less than 50K, which means that the Marital Status probably not the most effective factor.</div></div>
+<div class="divTableCell">
+
+<div>
+	<button onclick="window.location.href='2.html'">
+        < Previous
+    </button>
+	
+    <button onclick="window.location.href='1.html'" >
+         1 
+    </button>|
+    <button  onclick="window.location.href='2.html'" >
+         2
+    </button>|
+    <button style="background-color: #BFC1C1; cursor: default;" data-toggle="tooltip" data-placement="top" title="Current Scene">
+         3
+    </button>|
+    <button onclick="window.location.href='4.html'">
+         4
+    </button>| 
+	
+	<button onclick="window.location.href='4.html'">
+        Next >
+    </button>
+	
+	<button style="float: right;" onclick="window.open('about.html')" target="_blank">
+        About The Visualization
+    </button>
+</div>
+
+
+</div>
+
+</div>
+<div class="divTableRow">
+<div class="divTableCell">
+<p><span style="font-family: calibri, sans-serif;font-size: 11.5pt;">
+Let us look at the Marital Status. We can see that even though the Married people, in general, have a higher percentage of the >50K than any other Marital Status, but still the majority of married people has income less than 50K, which means that the Marital Status probably not the most effective factor.
+</span></p>
+</div></div>
 
 <div class="divTableRow">
 <div class="divTableCell">
@@ -198,7 +223,12 @@
 		  .attr("y",  2*_margins.top +28)
 		  .style("text-anchor", "middle")
 		  .text("<=50K");
-	 
+		  
+	 svg.append("text")             
+      .attr("x", width - 3 * _margins.right)
+      .attr("y",  2*_margins.top -15)
+      .style("text-anchor", "left")
+      .text("Income");
 	 
 		//annotations
 		
