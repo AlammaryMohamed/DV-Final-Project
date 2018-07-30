@@ -7,7 +7,7 @@
     <script type="text/javascript" src="./lib/d3.js"></script>
 </head>
 
-<body onload="setTimeout(openModal, 1000)" >
+<body onload="setTimeout(openModal, 1500)" >
 
 <div id="myModal" class="modal">
 
@@ -125,13 +125,6 @@ span.onclick = function() {
 	initVis();
 }
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-	initVis();
-}
 
 function initVis(){
 	d3.csv("adult_all.csv", function(error, csv){ // <-D
